@@ -1,0 +1,67 @@
+{% extends 'appmailsend/base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+
+            <div class="card-body">
+                <p class="card-text"> Клиенты </p>
+                <p class="card-text"> Всего в базе {{object_count}} </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{% url 'appmailsend:client' %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Открыть список клиентов</a>
+
+
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+
+            <div class="card-body">
+                <p class="card-text"> Рассылки {{mailingsettings_count}}  </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{% url 'appmailsend:mailingsettings' %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Открыть настройки рассылки</a>
+
+
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+
+            <div class="card-body">
+                <p class="card-text"> Отправлено писем </p>
+                <p class="card-text"> Всего {{Log_count}} успешно {{Log_count}} </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{% url 'appmailsend:mailinglog' %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Журнал отправки писем(логи)</a>
+
+
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

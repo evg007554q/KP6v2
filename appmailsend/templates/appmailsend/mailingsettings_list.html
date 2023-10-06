@@ -1,0 +1,36 @@
+{% extends 'appmailsend/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <a href="{% url 'appmailsend:mailingsettings_create' %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Добавить настройку</a>
+    </div>
+    {% for object in object_list%}
+    <div class="card mb-4 shadow-sm">
+
+            <div class="card-body">
+
+                <p class="card-text"> Время рассылки{{object.mailing_time}} </p>
+                <p class="card-text"> Дата начала рассылки {{object.start_of_mailing}} </p>
+                <p class="card-text"> График рассылки {{object.Mailing_schedule}} </p>
+                <p class="card-text"> Статус {{object.status}} </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{% url 'appmailsend:mailingsettings_detail' object.pk %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Просмотр</a>
+                        <a href="{% url 'appmailsend:mailingsettings_update' object.pk %}"  type="button"
+                           class="btn btn-sm btn-outline-secondary">Изменить</a>
+                        <a href="{% url 'appmailsend:mailingsettings_delete' object.pk %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Удалить</a>
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

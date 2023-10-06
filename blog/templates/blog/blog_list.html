@@ -1,0 +1,18 @@
+{% extends 'appmailsend/base.html' %}
+
+{% block content %}
+<div>
+    <div class="btn-group">
+        <a class="btn btn-primary" href="{% url 'blog:create' %}">Добавить запись</a>
+    </div>
+    <div class="row">
+
+        {% for object in object_list%}
+        {% include 'blog/includes/inc_blog.html' %}
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock %}

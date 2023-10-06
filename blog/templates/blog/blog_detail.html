@@ -1,0 +1,16 @@
+{% extends 'appmailsend/base.html' %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card mb-10 shadow-sm">
+        <img src="/media/{{ object.image }}" class="img-fluid">
+
+        <div class="card-body">
+            <p class="card-text"> {{object.title}} ,slug ={{object.slug}} </p>
+            <p class="card-text"> {{object.description}} </p>
+            <small class="text-muted">Просмотры: {{object.number_of_views}}</small>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

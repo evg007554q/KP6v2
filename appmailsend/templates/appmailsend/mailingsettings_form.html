@@ -1,0 +1,38 @@
+{% extends 'appmailsend/base.html' %}
+
+{% block content %}
+<form method="post" class="row">
+
+    <div class="col-6">
+        <div class="cart">
+            <div class="cart-body">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-success">
+                    {% if object %}
+                    Сохранить
+                    {% else %}
+                    Добавить
+                    {% endif %}
+                </button>
+
+            </div>
+        </div>
+    </div>
+<!--    <div class="col-6">-->
+<!--        <div class="cart">-->
+<!--            <div class="cart-header">-->
+<!--                Version-->
+<!--            </div>-->
+<!--            <div class="cart-body">-->
+<!--                {{ formset.management_form }}-->
+<!--                {% for form in formset.forms %}-->
+<!--                    {{ form.as_p }}-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+</form>
+{% endblock %}

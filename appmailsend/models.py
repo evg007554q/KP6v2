@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import Q
+
 from config import settings
 
 
@@ -13,7 +15,7 @@ class Client(models.Model):
     last_modified_date = models.DateTimeField(auto_now_add=True, verbose_name='дата последнего изменения', null=True,
                                               blank=True)
 
-    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
 
     def __str__(self):
         return f'{self.name} '
@@ -49,9 +51,13 @@ class mailingsettings(models.Model):
     status = models.CharField(max_length=10, choices=status_ch, default=day,
                                     verbose_name='Статус рассылки')
 
-    client = models.ManyToManyField(to='Client', limit_choices_to={'owner':True})
-    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
+    # client = models.ManyToManyField(Client, Q(owner_id= Client.owner))
+    # client = models.ManyToManyField(Client,  limit_choices_to={'owner': models.F('owner')}, null=True,blank=True, verbose_name='Получатели')
+    client = models.ManyToManyField(Client, )
 
+    subject_email = models.CharField(max_length=250, null=True, blank=True, verbose_name="Тема письма")
+    body_email = models.TextField(null=True, blank=True, verbose_name="Тело письма")
 
     def __str__(self):
         return f'Рассылка начиная с {self.start_of_mailing} - {self.Mailing_schedule} в {self.mailing_time}'
@@ -62,7 +68,7 @@ class mailingsettings(models.Model):
         ordering = ('start_of_mailing',)
 
 class MailingMessage(models.Model):
-    """Сообщение для рассылки """
+    """Сообщение для рассылки не удобно, не логично перенес в настройку рассылки"""
     subject_email = models.CharField(max_length=250, verbose_name="Тема письма")
     body_email = models.TextField(verbose_name="Тело письма")
     settings = models.OneToOneField(to='mailingsettings', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Создатель')
@@ -84,7 +90,7 @@ class MailingLog(models.Model):
 
 
     client = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True, blank=True,  verbose_name='Получатель')
-    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
 
     def __str__(self):
         return f'{self.time_mailing} - {self.answer} '

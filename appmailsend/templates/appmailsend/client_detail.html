@@ -1,0 +1,31 @@
+{% extends 'appmailsend/base.html' %}
+{% block content %}
+<div class="col-6">
+    <div class="cart">
+        <div class="cart-body">
+
+            <p class="card-text"> Имя - {{object.name}} </p>
+            <p class="card-text"> Описание - {{object.description}} </p>
+            <p class="card-text"> Почта - {{object.email }} </p>
+            <p class="card-text"> Дата создания - {{object.date_of_creation }} </p>
+            <p class="card-text"> Последнее изменение - {{object.last_modified_date }} </p>
+            <p class="card-text"> Всего рассылок с клиентом - {{object.1 }} </p>
+            <p class="card-text"> Отправлено писем клиенту - {{object.2 }} </p>
+
+
+        </div>
+    </div>
+</div>
+<!--<div class="col-6">-->
+<!--    <div class="cart">-->
+<!--        <div class="cart-header">-->
+<!--            Version-->
+<!--        </div>-->
+<!--        <div class="cart-body">-->
+<!--            {% for version in object.version_set.all %}-->
+<!--                <li>{{ version }}</li>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'appmailsend/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <a href="{% url 'appmailsend:Client_create' %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Добавить клиента</a>
+    </div>
+{% for object in object_list%}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+
+            <div class="card-body">
+                <p class="card-text">Пользователь {{object.owner}} </p>
+
+                <p class="card-text"> {{object.name}} </p>
+                <p class="card-text"> {{object.description}} </p>
+                <p class="card-text"> дата создания {{object.date_of_creation}} </p>
+                <p class="card-text"> последнее изменение {{object.last_modified_date}} </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{% url 'appmailsend:detail_Client' object.pk %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Просмотр</a>
+                        <a href="{% url 'appmailsend:Client_update' object.pk %}"  type="button"
+                           class="btn btn-sm btn-outline-secondary">Изменить</a>
+                        <a href="{% url 'appmailsend:Client_delete' object.pk %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Удалить</a>
+
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'appmailsend/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+
+            <div class="col-10">
+                <div class="cart">
+                    <div class="cart-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <p>Удалить запись "{{ object }} "</p>
+                            <button type="submit" class="btn btn-danger">
+                                Продолжить
+                            </button>
+                            <a href="{% url 'appmailsend:MailingLog' %}"  type="submit" class="btn btn-primary">
+                                отмена
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

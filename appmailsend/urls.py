@@ -1,9 +1,11 @@
 from django.urls import path
 
 from appmailsend.apps import AppmailsendConfig
+
 from appmailsend.views import index, mailingsettingsListView, ClientCreateView, ClientUpdateView, \
     ClientDetailView, mailingsettingsCreateView, mailingsettingsUpdateView, mailingsettingsDetailView, ClientListView, \
-    ClientDeleteVeiw, mailingsettingsDeleteVeiw, mailinglogListView, mailinglogDeleteVeiw, mailinglogDetailView
+    ClientDeleteVeiw, mailingsettingsDeleteVeiw, mailinglogListView, mailinglogDeleteVeiw, mailinglogDetailView, \
+    new_app_send_mail_schedule
 
 app_name = AppmailsendConfig.name
 urlpatterns = [
@@ -26,5 +28,6 @@ urlpatterns = [
     path('mailinglog_info/<int:pk>/', mailinglogDetailView.as_view(), name='mailinglog_detail'),
     path('mailinglog_delete/<int:pk>', mailinglogDeleteVeiw.as_view(), name='mailinglog_delete'),
 
+    path('mailinglog/test_send_mail_schedule/', new_app_send_mail_schedule, name='new_app_send_mail_schedule'),
 ]
 # + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

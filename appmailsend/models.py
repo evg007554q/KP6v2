@@ -90,7 +90,7 @@ class MailingLog(models.Model):
 
 
     client = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True, blank=True,  verbose_name='Получатель')
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
+    owner = models.ForeignKey('mailingsettings', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Создатель')
 
     def __str__(self):
         return f'{self.time_mailing} - {self.answer} '

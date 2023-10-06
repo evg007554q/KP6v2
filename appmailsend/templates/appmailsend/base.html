@@ -31,6 +31,7 @@
                         <li><a href="{% url 'appmailsend:mailinglog' %}" class="text-white">Логи рассылки</a></li>
 
                         <li><a href="{% url 'blog:list' %}" class="text-white">Блог</a></li>
+                        <li><a href="{% url 'appmailsend:new_app_send_mail_schedule' %}" class="text-white">test</a>
 
                         {% if user.is_authenticated %}
                         <li><a href="{% url 'users:generate_new_password' %}" class="text-white">Сбросить пароль</a>

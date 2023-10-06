@@ -16,8 +16,8 @@ def index(request):
         context = {
 
             'object_count': Client.objects.filter(owner=request.user).count(),
-            'Log_count': MailingLog.objects.filter(owner=request.user).count(),
-            'succes_mail_count': MailingLog.objects.filter(owner=request.user, succes_mail=True).count(),
+            # 'Log_count': MailingLog.objects.filter(owner=request.user).count(),
+            # 'succes_mail_count': MailingLog.objects.filter(owner=request.user, succes_mail=True).count(),
             'mailingsettings_count': mailingsettings.objects.filter(owner=request.user).count(),
             'title': f'Рассылка пользователя - {request.user}'
         }
@@ -25,8 +25,8 @@ def index(request):
         context = {
 
             'object_count': 0,
-            'Log_count': 0,
-            'succes_mail_count': 0,
+            # 'Log_count': 0,
+            # 'succes_mail_count': 0,
             'mailingsettings_count': 0,
             'title': f'Авторизуйтесь для работы с сервисом'
         }
@@ -193,7 +193,7 @@ class mailingsettingsDetailView(DetailView):
     }
     form_class = mailingsettingsForm
     success_url = reverse_lazy('appmailsend:mailingsettings')
-    app_send_mail_schedule()
+
 
     # def get_context_data(self, **kwargs):
     #     context_data = super().get_context_data(**kwargs)
@@ -229,7 +229,7 @@ class mailinglogDetailView(DetailView):
         'title': 'Детали рассылки'
     }
     form_class = mailingsettingsForm
-    success_url = reverse_lazy('appmailsend:MailingLog')
+    success_url = reverse_lazy('appmailsend:mailinglog')
 
 
 
@@ -239,4 +239,10 @@ class mailinglogDeleteVeiw(DeleteView):
     extra_context = {
         'title': 'Delete MailingLog'
     }
-    success_url = reverse_lazy('appmailsend:MailingLog')
+    success_url = reverse_lazy('appmailsend:mailinglog')
+
+
+
+def new_app_send_mail_schedule(request):
+    app_send_mail_schedule()
+    return redirect(reverse_lazy('appmailsend:mailinglog'))
